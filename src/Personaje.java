@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Personaje {
@@ -13,9 +12,9 @@ public class Personaje {
     private int nivel;
     private int experiencia;
 
-    private Set<String> habilidades;
-
-    private Map<String, Integer> inventario;
+    // Podríamos declararlos como Set y Map, pero hasta que veamos herencia no lo haremos
+    private HashSet<String> habilidades;
+    private HashMap<String, Integer> inventario;
 
     public Personaje(String nombre, int vidaMax, int ataque, int defensa) {
         this.nombre = nombre;
