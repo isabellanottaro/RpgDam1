@@ -1,19 +1,43 @@
+import javax.xml.transform.Source;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Juego {
 
+    private final static int ENEMIGO_VIDA_MAXIMA = 120;
+    private final static int ENEMIGO_VIDA_MINIMA = 80;
+    private final static int ENEMIGO_ATAQUE_MAXIMO = 20;
+    private final static int ENEMIGO_ATAQUE_MINIMO = 5;
+
+
+    private final static String[] nombreEnemigos = {
+            "Aiden", "Nyx", "Valeria", "Kael", "Riven",
+            "Elara", "Dante", "Selene", "Orion", "Vesper",
+            "Lucian", "Freya", "Cassian", "Lyra", "Draven",
+            "Aria", "Magnus", "Zara", "Ezra", "Nova",
+            "Rowan", "Seraphina", "Axel", "Iris", "Theron"
+    };
+
+    private final static String[] aliasEnemigos = {
+            "the Fallen", "the Unbroken", "the Silent Blade", "the Last Shadow", "the Stormbringer",
+            "the Iron Fist", "the Void Walker", "the Night Reaper", "the Flame Warden", "the Soul Hunter",
+            "the Crimson Vow", "the Black Revenant", "the Thunderlord", "the Blood Oath", "the Phantom Strike",
+            "the Abyss Caller", "the Dread Knight", "the Frostborn", "the Warborn", "the Doombringer",
+            "the Eclipse", "the Relentless", "the Vindicator", "the Shadowborn", "the Riftbreaker"
+    };
+
     private Personaje jugador;
 
-    // TODO: elegir estructura para enemigos encontrados (LIST)
-    // private ???
+    // Podríamos declararlo como "List", pero hasta ver herencia no lo hacemos.
+    private ArrayList<Enemigo> enemigos;
 
     private Scanner sc;
 
     public Juego() {
         this.jugador = new Personaje("Jugador", 100, 20, 10);
         this.sc = new Scanner(System.in);
-
-        // TODO: inicializar colección de enemigos
+        this.enemigos = new ArrayList<Enemigo>();
     }
 
     public void iniciar() {
@@ -68,17 +92,27 @@ public class Juego {
 
     private void buscarEnemigo() {
 
-        // TODO:
-        // 1. Crear enemigo aleatorio
-        // 2. Añadirlo a la colección
-        // 3. Mostrar información
+        // Para crear un enemigo aleatorio, vamos a usar 2 arrays de nombre y alias (constantes) para generar nombres aleatorios
+        // Además, vamos a usar límites superiores e inferiores para el ataque y la vida, para que también sean aleatorios..
+        Random aleatorio = new Random();
 
+        String nombre = nombreEnemigos[aleatorio.nextInt(nombreEnemigos.length)] + " " +
+                aliasEnemigos[aleatorio.nextInt(aliasEnemigos.length)];
+        Enemigo enemigo = new Enemigo(nombre,
+                aleatorio.nextInt(ENEMIGO_VIDA_MINIMA, ENEMIGO_VIDA_MAXIMA+1),
+                aleatorio.nextInt(ENEMIGO_ATAQUE_MINIMO, ENEMIGO_ATAQUE_MAXIMO+1)
+                );
+        enemigos.add(enemigo);
+        System.out.print("Has encontrado a un enemigo:");
+        enemigo.mostrarInfo();
     }
 
     private void mostrarEnemigosEncontrados() {
 
-        // TODO:
-        // Recorrer colección y mostrar enemigos
-
+        System.out.println("Hasta ahora has encontrado " + enemigos.size());
+        System.out.println("Te has encontrado con: ");
+        for (int i = 0; i<enemigos.size(); i++) {
+            System.out.print((i+1) + " - " + enemigos.get(i).getNombre()) ;
+        }
     }
 }
