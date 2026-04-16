@@ -1,5 +1,6 @@
 # Práctica 2 — Sistema RPG (Excepciones y ficheros)
 
+(cambio de prueba)
 ## Contexto
 
 Se continúa el desarrollo del sistema RPG comenzado en la práctica anterior.
