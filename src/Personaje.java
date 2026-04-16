@@ -8,7 +8,7 @@ public class Personaje {
     private int nivel;
     private int experiencia;
 
-    // TODO: elegir estructura para habilidades
+    // TODO: elegir estructura para habilidades cambio de prueba
     // private ???
 
     // TODO: elegir estructura para inventario
